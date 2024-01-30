@@ -85,8 +85,7 @@ class QuantumParticle:
         self.state = np.array(state, dtype=complex)
         self.velocity = velocity
         self.entropy = None
-
-        # More complex Hamiltonian (example: Pauli-X matrix)
+        # Hamiltonian
         self.H = np.array([[0, 1], [1, 0]], dtype=complex)
 
     def apply_directive(self, influence, noise_std_dev=0.01):
@@ -132,21 +131,12 @@ class QuantumParticle:
     def apply_directive(self, influence):
         self.state += influence 
 
-# Spacetime Class Definition
-class Spacetime:
-    def __init__(self):
-        self.curvature = 0
 
-    def update_curvature(self, global_time):
-        fluctuation = random.uniform(-0.1, 0.1)
-        if np.isfinite(global_time.time_flow_rate):
-            self.curvature += fluctuation * global_time.time_flow_rate
-
+# Function to run the simulation
 # Function to run the simulation
 def run_simulation(use_active_time, max_iterations=1000):
     global_time = GlobalTime()
     particles = [QuantumParticle([1.0, 0.0], np.random.uniform(-0.1, 0.1, 3) * C) for _ in range(2)]
-    spacetime = Spacetime()
 
     entropy_values = []
     complexity_values = []
@@ -181,7 +171,6 @@ def run_simulation(use_active_time, max_iterations=1000):
             dilated_time = particle.calculate_dilated_time(intrinsic_dt)
             dilated_times.append(dilated_time)
 
-        spacetime.update_curvature(global_time)
         avg_energy = global_time.calculate_avg_energy(particles)
         entropy = global_time.calculate_entropy(particles)
         complexity = global_time.calculate_complexity(particles)
@@ -197,6 +186,35 @@ def run_simulation(use_active_time, max_iterations=1000):
         "complexity": complexity_values,
         "dilated_times": dilated_times
     }
+
+
+
+def calculate_average_dilated_time(results):
+    return np.mean(results['dilated_times'])
+
+def execute_simulations(max_iterations=1000):
+    results_with_active_time = run_simulation(use_active_time=True, max_iterations=max_iterations)
+
+    avg_dilated_time_with_active_time = calculate_average_dilated_time(results_with_active_time)
+
+    return results_with_active_time['intrinsic_time'], avg_dilated_time_with_active_time
+
+def plot_active_time_comparison(max_iterations=1000):
+    # Run simulations and get results for active time scenario
+    intrinsic_time_with, avg_dilated_time_with = execute_simulations(max_iterations)
+
+    # Data for plotting
+    categories = ['Intrinsic Time', 'Average Dilated Time']
+    values = [intrinsic_time_with, avg_dilated_time_with]
+
+    # Create a bar plot for active time properties
+    plt.figure(figsize=(10, 6))
+    plt.bar(categories, values, color=['blue', 'green'])
+    plt.yscale('log')  # Logarithmic scale due to large differences in values
+    plt.title('Active Time Properties: Intrinsic vs. Average Dilated Time')
+    plt.ylabel('Time')
+    plt.tight_layout()
+    plt.show()
 
 
 
@@ -234,13 +252,16 @@ def plot_comparison(results_with_time, results_without_time):
     plt.legend()
     plt.show()
 
+ 
+
 # Main Execution Block
 if __name__ == "__main__":
     results_with_time = run_simulation(True)
     results_without_time = run_simulation(False)
-
+    
     plot_comparison(results_with_time, results_without_time)
-
+    plot_active_time_comparison()
+    
     # Print intrinsic and average dilated time for both scenarios
     print("With Active Time:")
     print(f"Intrinsic Time: {results_with_time['intrinsic_time']}")
@@ -249,3 +270,4 @@ if __name__ == "__main__":
     print("\nWithout Active Time:")
     print(f"Intrinsic Time: {results_without_time['intrinsic_time']}")
     print(f"Average Dilated Time: {np.mean(results_without_time['dilated_times'])}")
+ 
