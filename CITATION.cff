@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "Abdelsamie"
+    given-names: "Maher"
+    orcid: "0000-0003-0942-1461"
+title: "Re-interpreting Time Dilation Through the Lens of Active Time"
+version: 1.0.0
+repository-code: "https://github.com/maherabdelsamie/Active-Time-Theory-Time-Dilation"
+date-released: 2024-01-30
