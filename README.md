@@ -135,6 +135,11 @@ In particle accelerators, if ATH were to apply, the increased energies of partic
 #### Conclusion from Results
 Our simulation findings suggest that, within the theoretical ATH framework, time dilation may not solely be a consequence of relative velocities or gravitational fields, as posited by Einstein's theory of special relativity. Instead, time itself may have active properties that influence and are influenced by the quantum system it encompasses. This novel perspective on temporal dynamics warrants further theoretical and empirical exploration and could have far-reaching implications for our understanding of fundamental physics.
 
+
+![download (1)](https://github.com/maherabdelsamie/Active-Time-Theory-Time-Dilation/assets/73538221/e455e9d3-344d-4057-b3b9-e690adadf602)
+![download (2)](https://github.com/maherabdelsamie/Active-Time-Theory-Time-Dilation/assets/73538221/0e19af70-e7a8-4207-8b2a-8fe09936c6c1)
+![download (3)](https://github.com/maherabdelsamie/Active-Time-Theory-Time-Dilation/assets/73538221/fa9de2ee-67b7-48fb-81f4-86c32a87807c)
+
 ---
 
 # Installation
